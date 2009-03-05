@@ -4,21 +4,37 @@
     <script type="text/javascript" src="imagedata.js"></script>
     <script type="text/javascript">
       var pixels, otherpixels;
+
       function drawPNGs() {
         pixels = drawBoxes(32,32,10,10,10);
         displayImage(fallingrocks, pixels);
 
         otherpixels = drawBoxes(32,32,10 + (12 * 32) + 150,10,10);
-        var translated = mMult(fallingrocks, translate(5,5));
-        displayImage(translated, otherpixels);
       }
 
-      function onload() {
-        drawPNGs();
+      function makeTableEditable() {
         var tds = document.getElementsByTagName('td');
         for(var i = 0; i < tds.length; i++) {
           tds[i].addEventListener('click', editableHandler, false);
         }
+      }
+
+      function setupTransformAction() {
+        var button = document.getElementById('tbutton');
+        button.addEventListener('click', transformHandler, false);
+      }
+
+      function transformHandler(event) {
+        var table = document.getElementById('ttable');
+        var xform = collectArrayFromTable(table);
+        var transformed = mMult(fallingrocks, xform);
+        displayImage(transformed, otherpixels);
+      }
+
+      function onload() {
+        drawPNGs();
+        makeTableEditable();
+        setupTransformAction();
       }
 
       window.addEventListener('load', onload, false);
@@ -53,11 +69,15 @@
         width: 25px;
         height: 25px;
       }
+      #tbutton {
+        width: 100px;
+        height: 25px;
+      }
     </style>
   </head>
   <body>
     <div id="tmatrix">
-      <table>
+      <table id="ttable">
         <tr><td>1</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td></tr>
         <tr><td>0</td><td>1</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td></tr>
         <tr><td>0</td><td>0</td><td>1</td><td>0</td><td>0</td><td>0</td><td>0</td></tr>
@@ -66,6 +86,7 @@
         <tr><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>1</td><td>0</td></tr>
         <tr><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>1</td></tr>
       </table>
+      <input id="tbutton" type="button" value="transform!"/>
     </div>
   </body>
 </html>

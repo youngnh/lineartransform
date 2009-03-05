@@ -85,11 +85,16 @@ function dot(v, w) {
     return sum;
 }
 
+function swallowHandler(event) {
+    event.stopPropagation();
+}
+
 function makeEditable(td) {
     var input = document.createElement('input');
     input.type = "text";
     input.value = td.textContent;
     input.size = 1;
+    input.addEventListener('click', swallowHandler, false);
 
     var newtd = document.createElement('td');
     newtd.appendChild(input);
@@ -117,4 +122,16 @@ function editableHandler(event) {
     makeEditable(event.target);
     event.stopPropagation();
     return event;
+}
+
+function collectArrayFromTable(table) {
+    var arr = new Array();
+    for(var c = 0; c < 7; c++) {
+        arr[c] = new Array();
+        for(var r = 0; r < 7; r++) {
+            arr[c][r] = parseInt(table.rows[r].cells[c].textContent);
+        }
+    }
+
+    return arr;
 }
