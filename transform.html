@@ -2,11 +2,10 @@
   <head>
     <script type="text/javascript" src="pixels.js"></script>
     <script type="text/javascript" src="imagedata.js"></script>
-    <script type="text/javascript" src="imagedata2.js"></script>
     <script type="text/javascript">
       function onload() {
         var pixels = drawBoxes(32,32,50,50,10);
-        displayImage2(bus2, pixels);
+        displayImage(bus, pixels);
 
         var otherpixels = drawBoxes(32,32,50 + (12 * 32),50,10);
         displayImage(fallingrocks, otherpixels);
