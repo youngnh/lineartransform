@@ -8,6 +8,17 @@ function displayImage(data, pixels) {
     }
 }
 
+function displayImage2(data, pixels) {
+    var i = 0;
+    while(i < data.length) {
+        var pixel = data[i++];
+        var x = pixel[0];
+        var y = pixel[1];
+        var rgba = pixel.slice(2);
+        Element.prototype.setRGB.apply(pixels[y][x], rgba);
+    }
+}
+
 Number.prototype.toHex = function() {
     var n = this;
     var hex = n.toString(16);
