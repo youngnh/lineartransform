@@ -5,7 +5,7 @@ function displayImage(data, pixels) {
         var x = pixel[0];
         var y = pixel[1];
         var rgba = pixel.slice(2);
-        if(y < pixels.length && x < pixels[y].length)
+        if(y >= 0 && x >= 0 && y < pixels.length && x < pixels[y].length)
             Element.prototype.setRGB.apply(pixels[y][x], rgba);
     }
 }
