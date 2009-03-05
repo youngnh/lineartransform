@@ -4,7 +4,7 @@
     <script type="text/javascript" src="imagedata.js"></script>
     <script type="text/javascript">
       var pixels, otherpixels;
-      function onload() {
+      function drawPNGs() {
         pixels = drawBoxes(32,32,50,50,10);
         displayImage(fallingrocks, pixels);
 
@@ -13,11 +13,20 @@
         displayImage(translated, otherpixels);
       }
 
+      function onload() {
+        drawPNGs();
+        var tds = document.getElementsByTagName('td');
+        for(var i = 0; i < tds.length; i++) {
+          tds[i].addEventListener('click', editableHandler, false);
+        }
+      }
+
       window.addEventListener('load', onload, false);
     </script>
     <style>
       body {
-        background-color: #838383
+        background-color: #838383;
+        font-family: sans-serif;
       }
       div {
         position: absolute;
@@ -25,8 +34,39 @@
         height: 10px;
         border: 1px solid black;
       }
+      #tmatrix {
+        position: absolute;
+        width: 180px;
+        height: 180px;
+        top: 410px;
+        left: 50px;
+        border: none;
+      }
+      table {
+        width: 90%;
+        margin: 5%;
+      }
+      td {
+        width: 25px;
+        height: 25px;
+      }
+      input {
+        width: 25px;
+        height: 25px;
+      }
     </style>
   </head>
   <body>
+    <div id="tmatrix">
+      <table>
+        <tr><td>1</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td></tr>
+        <tr><td>0</td><td>1</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td></tr>
+        <tr><td>0</td><td>0</td><td>1</td><td>0</td><td>0</td><td>0</td><td>0</td></tr>
+        <tr><td>0</td><td>0</td><td>0</td><td>1</td><td>0</td><td>0</td><td>0</td></tr>
+        <tr><td>0</td><td>0</td><td>0</td><td>0</td><td>1</td><td>0</td><td>0</td></tr>
+        <tr><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>1</td><td>0</td></tr>
+        <tr><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>1</td></tr>
+      </table>
+    </div>
   </body>
 </html>

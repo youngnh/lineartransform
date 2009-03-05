@@ -84,3 +84,20 @@ function dot(v, w) {
     }
     return sum;
 }
+
+function makeEditable(td) {
+    var input = document.createElement('input');
+    input.type = "text";
+    input.value = td.textContent;
+    input.size = 1;
+
+    var newtd = document.createElement('td');
+    newtd.appendChild(input);
+
+    td.parentNode.replaceChild(newtd, td);
+}
+
+function editableHandler(event) {
+    makeEditable(event.target);
+    return event;
+}
