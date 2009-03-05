@@ -5,10 +5,10 @@
     <script type="text/javascript">
       var pixels, otherpixels;
       function drawPNGs() {
-        pixels = drawBoxes(32,32,50,50,10);
+        pixels = drawBoxes(32,32,10,10,10);
         displayImage(fallingrocks, pixels);
 
-        otherpixels = drawBoxes(32,32,50 + (12 * 32),50,10);
+        otherpixels = drawBoxes(32,32,10 + (12 * 32) + 150,10,10);
         var translated = mMult(fallingrocks, translate(5,5));
         displayImage(translated, otherpixels);
       }
@@ -38,8 +38,7 @@
         position: absolute;
         width: 180px;
         height: 180px;
-        top: 410px;
-        left: 50px;
+        left: 364px;
         border: none;
       }
       table {

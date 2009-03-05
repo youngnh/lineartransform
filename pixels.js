@@ -95,9 +95,26 @@ function makeEditable(td) {
     newtd.appendChild(input);
 
     td.parentNode.replaceChild(newtd, td);
+
+    function handler(event) {
+        window.removeEventListener('click', handler, false);
+        unmakeEditable(newtd);
+    }
+    window.addEventListener('click', handler, false);
+}
+
+function unmakeEditable(td) {
+    var input = td.firstChild;
+
+    var newtd = document.createElement('td');
+    newtd.textContent = input.value;
+    newtd.addEventListener('click', editableHandler, false);
+
+    td.parentNode.replaceChild(newtd, td);
 }
 
 function editableHandler(event) {
     makeEditable(event.target);
+    event.stopPropagation();
     return event;
 }
