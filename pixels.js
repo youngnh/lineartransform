@@ -18,8 +18,11 @@ Number.prototype.toHex = function() {
 
 Element.prototype.setRGB = function (r,g,b,a) {
     var elt = this;
-    elt.style.backgroundColor = "#" + r.toHex() + g.toHex() + b.toHex();
-    elt.style.opacity = a / 255;
+    var opacity = a == 0 ? 1.0 : a / 255;
+    var bg = a == 0 ? "" : "#" + r.toHex() + g.toHex() + b.toHex();
+
+    elt.style.backgroundColor = bg;
+    elt.style.opacity = opacity;
 };
 
 function drawBoxes(w,h,xoff,yoff,boxw) {
