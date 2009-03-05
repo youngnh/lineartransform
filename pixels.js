@@ -5,7 +5,8 @@ function displayImage(data, pixels) {
         var x = pixel[0];
         var y = pixel[1];
         var rgba = pixel.slice(2);
-        Element.prototype.setRGB.apply(pixels[y][x], rgba);
+        if(y < pixels.length && x < pixels[y].length)
+            Element.prototype.setRGB.apply(pixels[y][x], rgba);
     }
 }
 
@@ -45,6 +46,23 @@ function drawBoxes(w,h,xoff,yoff,boxw) {
     }
 
     return array;
+}
+
+function translate(dx,dy) {
+    var a = new Array(7);
+    for(var x = 0; x < 7; x++) {
+        a[x] = new Array(7);
+        for(var y = 0; y < 7; y++) {
+            a[x][y] = 0;
+        }
+    }
+    for(var x = 0, y = 0; x < 7 && y < 7; x++, y++) {
+        a[x][y] = 1;
+    }
+    a[0][6] = dx;
+    a[1][6] = dy;
+
+    return a;
 }
 
 function mMult(rmatrix, cmatrix) {

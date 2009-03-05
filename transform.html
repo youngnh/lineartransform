@@ -3,12 +3,14 @@
     <script type="text/javascript" src="pixels.js"></script>
     <script type="text/javascript" src="imagedata.js"></script>
     <script type="text/javascript">
+      var pixels, otherpixels;
       function onload() {
-        var pixels = drawBoxes(32,32,50,50,10);
-        displayImage(bus, pixels);
+        pixels = drawBoxes(32,32,50,50,10);
+        displayImage(fallingrocks, pixels);
 
-        var otherpixels = drawBoxes(32,32,50 + (12 * 32),50,10);
-        displayImage(fallingrocks, otherpixels);
+        otherpixels = drawBoxes(32,32,50 + (12 * 32),50,10);
+        var translated = mMult(fallingrocks, translate(5,5));
+        displayImage(translated, otherpixels);
       }
 
       window.addEventListener('load', onload, false);
