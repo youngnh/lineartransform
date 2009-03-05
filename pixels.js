@@ -46,3 +46,23 @@ function drawBoxes(w,h,xoff,yoff,boxw) {
 
     return array;
 }
+
+function mMult(rmatrix, cmatrix) {
+    var arr = new Array();
+    for(var i = 0; i < rmatrix.length; i++) {
+        arr[i] = new Array();
+        for(var j = 0; j < cmatrix.length; j++) {
+            arr[i][j] = dot(rmatrix[i], cmatrix[j]);
+        }
+    }
+
+    return arr;
+}
+
+function dot(v, w) {
+    var sum = 0;
+    for(var i = 0; i < v.length; i++) {
+        sum += v[i] * w[i];
+    }
+    return sum;
+}
